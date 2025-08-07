@@ -1,9 +1,34 @@
-{% extends "template.html" %} {% block title %} Gallery {% endblock %}
+{% extends "template.html" %}
+{% block title %}Gallery | TF2 Mercenary Database{% endblock %}
 
-
-{% block content %} 
-
-
-<h2> Gallery </h2>
-
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg mb-4">
+        <div class="card-header bg-warning text-dark text-center">
+          <h2>Gallery</h2>
+        </div>
+        <div class="card-body">
+          <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="image" class="form-label">Upload an image</label>
+              <input type="file" id="image" name="image" class="form-control" accept="image/*" required>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-primary" type="submit">Upload</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        {% for filename in images %}
+        <div class="col-md-4 mb-4">
+          <img src="{{ url_for('static', filename='gallery/' ~ filename) }}" class="img-fluid rounded" alt="User Image">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
