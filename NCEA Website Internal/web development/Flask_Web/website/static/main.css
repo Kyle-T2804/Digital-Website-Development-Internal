@@ -9,3 +9,49 @@ h2 {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
+
+/* TF2-inspired card borders and hover effect */
+.card {
+    border-radius: 16px;
+    border: 3px solid #a73232; /* TF2 red */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    border-color: #ffc857; /* TF2 gold/yellow */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.card-header {
+    border-bottom: 2px solid #232323;
+    font-size: 1.5rem;
+    font-family: 'Lato', Arial, Helvetica, sans-serif;
+    background: linear-gradient(90deg, #a73232 0%, #ffc857 100%);
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #f8f9fa;
+}
+
+.btn-warning {
+    background-color: #ffc857;
+    color: #232323;
+    border: 2px solid #a73232;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-warning:hover {
+    background-color: #a73232;
+    color: #ffc857;
+}
+
+body {
+    background-color: #e5e5e5;
+}
