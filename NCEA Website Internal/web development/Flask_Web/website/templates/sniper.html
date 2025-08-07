@@ -1,0 +1,25 @@
+{% extends "template.html" %}
+{% block title %}Sniper | TF2 Mercenary Database{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-8">
+    <div class="card shadow-lg">
+      <div class="card-header bg-warning text-dark text-center">
+        <h2>Sniper</h2>
+      </div>
+      <div class="card-body text-center">
+        <img src="{{ url_for('static', filename='assets/img/sniper.jpg') }}" alt="Sniper" class="img-fluid rounded mb-3" style="max-width: 300px;">
+        <p class="lead">The Sniper excels at picking off enemies from a distance with his deadly accuracy. He is perfect for eliminating key targets and controlling open areas.</p>
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item"><strong>Role:</strong> Support</li>
+          <li class="list-group-item"><strong>Health:</strong> 125 HP</li>
+          <li class="list-group-item"><strong>Abilities:</strong> Long-range Headshots</li>
+          <li class="list-group-item"><strong>Primary Weapon:</strong> Sniper Rifle</li>
+        </ul>
+        <a href="{{ url_for('views.home') }}" class="btn btn-warning mt-2">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
