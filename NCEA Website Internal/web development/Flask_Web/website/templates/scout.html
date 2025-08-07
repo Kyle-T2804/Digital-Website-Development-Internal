@@ -1,0 +1,25 @@
+{% extends "template.html" %}
+{% block title %}Scout | TF2 Mercenary Database{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-8">
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white text-center">
+        <h2>Scout</h2>
+      </div>
+      <div class="card-body text-center">
+        <img src="{{ url_for('static', filename='assets/img/scout.jpg') }}" alt="Scout" class="img-fluid rounded mb-3" style="max-width: 300px;">
+        <p class="lead">The fastest mercenary on the battlefield, the Scout excels at capturing objectives and harassing the enemy with his speed and double jump ability.</p>
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item"><strong>Role:</strong> Offense</li>
+          <li class="list-group-item"><strong>Health:</strong> 125 HP</li>
+          <li class="list-group-item"><strong>Abilities:</strong> Double Jump, Fast Movement</li>
+          <li class="list-group-item"><strong>Primary Weapon:</strong> Scattergun</li>
+        </ul>
+        <a href="{{ url_for('views.home') }}" class="btn btn-warning mt-2">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
