@@ -17,51 +17,33 @@
     <div class="bg-circle-4 bg-circle"></div>
 </header>
 
-<!-- Content section 1-->
-<section id="scroll">
+<!-- Mercenary Cards Grid -->
+<section class="py-5">
     <div class="container px-5">
-        <div class="row gx-5 align-items-center">
-            <div class="col-lg-6 order-lg-2">
-                <div class="p-5"><img class="img-fluid rounded-circle" src="static/assets/img/scout.jpg" alt="Scout" /></div>
+        <div class="row gx-5 gy-4">
+            {% set mercs = [
+                {'name': 'Scout', 'img': 'scout.jpg', 'route': 'scout'},
+                {'name': 'Soldier', 'img': 'soldier.jpg', 'route': 'soldier'},
+                {'name': 'Pyro', 'img': 'pyro.jpg', 'route': 'pyro'},
+                {'name': 'Demoman', 'img': 'demoman.jpg', 'route': 'demoman'},
+                {'name': 'Heavy', 'img': 'heavy.jpg', 'route': 'heavy'},
+                {'name': 'Engineer', 'img': 'engineer.jpg', 'route': 'engineer'},
+                {'name': 'Medic', 'img': 'medic.jpg', 'route': 'medic'},
+                {'name': 'Sniper', 'img': 'sniper.jpg', 'route': 'sniper'},
+                {'name': 'Spy', 'img': 'spy.jpg', 'route': 'spy'}
+            ] %}
+            {% for merc in mercs %}
+            <div class="col-md-4 col-lg-3">
+                <a href="{{ url_for(merc.route) }}" class="text-decoration-none">
+                    <div class="card h-100 shadow-sm text-center">
+                        <img src="{{ url_for('static', filename='assets/img/' + merc.img) }}" class="card-img-top p-3" alt="{{ merc.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ merc.name }}</h5>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="col-lg-6 order-lg-1">
-                <div class="p-5">
-                    <h2 class="display-4">Scout</h2>
-                    <p>Fast and agile, the Scout is perfect for capturing objectives and harassing enemies. His double jump and speed make him hard to hit!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Content section 2-->
-<section>
-    <div class="container px-5">
-        <div class="row gx-5 align-items-center">
-            <div class="col-lg-6">
-                <div class="p-5"><img class="img-fluid rounded-circle" src="static/assets/img/soldier.jpg" alt="Soldier" /></div>
-            </div>
-            <div class="col-lg-6">
-                <div class="p-5">
-                    <h2 class="display-4">Soldier</h2>
-                    <p>The Soldier is versatile and powerful, using rocket launchers to deal heavy damage and rocket jump to reach high places.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Content section 3-->
-<section>
-    <div class="container px-5">
-        <div class="row gx-5 align-items-center">
-            <div class="col-lg-6 order-lg-2">
-                <div class="p-5"><img class="img-fluid rounded-circle" src="static/assets/img/pyro.jpg" alt="Pyro" /></div>
-            </div>
-            <div class="col-lg-6 order-lg-1">
-                <div class="p-5">
-                    <h2 class="display-4">Pyro</h2>
-                    <p>Pyro brings the heat with a flamethrower, perfect for close-range combat and area denial. Watch out for the flames!</p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

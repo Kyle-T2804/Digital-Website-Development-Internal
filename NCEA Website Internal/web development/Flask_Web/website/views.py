@@ -53,3 +53,39 @@ def delete_note():
             db.session.commit()
             
     return jsonify({})
+
+@views.route('/scout')
+def scout():
+    return render_template('scout.html')
+
+@views.route('/soldier')
+def soldier():
+    return render_template('soldier.html')
+
+@views.route('/pyro')
+def pyro():
+    return render_template('pyro.html')
+
+@views.route('/demoman')
+def demoman():
+    return render_template('demoman.html')
+
+@views.route('/heavy')
+def heavy():
+    return render_template('heavy.html')
+
+@views.route('/engineer')
+def engineer():
+    return render_template('engineer.html')
+
+@views.route('/medic')
+def medic():
+    return render_template('medic.html')
+
+@views.route('/sniper')
+def sniper():
+    return render_template('sniper.html')
+
+@views.route('/spy')
+def spy():
+    return render_template('spy.html')
