@@ -1,0 +1,25 @@
+{% extends "template.html" %}
+{% block title %}Spy | TF2 Mercenary Database{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-8">
+    <div class="card shadow-lg">
+      <div class="card-header bg-dark text-white text-center">
+        <h2>Spy</h2>
+      </div>
+      <div class="card-body text-center">
+        <img src="{{ url_for('static', filename='assets/img/spy.jpg') }}" alt="Spy" class="img-fluid rounded mb-3" style="max-width: 300px;">
+        <p class="lead">The Spy is a master of deception, able to disguise himself as the enemy and use his cloaking device to infiltrate and eliminate high-value targets.</p>
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item"><strong>Role:</strong> Support</li>
+          <li class="list-group-item"><strong>Health:</strong> 125 HP</li>
+          <li class="list-group-item"><strong>Abilities:</strong> Cloak, Disguise, Backstab</li>
+          <li class="list-group-item"><strong>Primary Weapon:</strong> Revolver, Knife</li>
+        </ul>
+        <a href="{{ url_for('views.home') }}" class="btn btn-warning mt-2">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
