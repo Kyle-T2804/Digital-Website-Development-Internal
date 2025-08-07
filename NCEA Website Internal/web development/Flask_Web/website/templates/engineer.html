@@ -1,0 +1,25 @@
+{% extends "template.html" %}
+{% block title %}Engineer | TF2 Mercenary Database{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-8">
+    <div class="card shadow-lg">
+      <div class="card-header bg-info text-white text-center">
+        <h2>Engineer</h2>
+      </div>
+      <div class="card-body text-center">
+        <img src="{{ url_for('static', filename='assets/img/engineer.jpg') }}" alt="Engineer" class="img-fluid rounded mb-3" style="max-width: 300px;">
+        <p class="lead">The Engineer is a master of building and maintaining helpful machines, such as Sentry Guns, Dispensers, and Teleporters, to support his team and control the battlefield.</p>
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item"><strong>Role:</strong> Defense</li>
+          <li class="list-group-item"><strong>Health:</strong> 125 HP</li>
+          <li class="list-group-item"><strong>Abilities:</strong> Build Sentry, Dispenser, Teleporter</li>
+          <li class="list-group-item"><strong>Primary Weapon:</strong> Shotgun</li>
+        </ul>
+        <a href="{{ url_for('views.home') }}" class="btn btn-warning mt-2">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
