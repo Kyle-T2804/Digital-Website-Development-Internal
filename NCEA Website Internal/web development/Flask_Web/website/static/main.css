@@ -53,5 +53,17 @@ h2 {
 }
 
 body {
-    background-color: #e5e5e5;
+    background: linear-gradient(135deg, #3a3a3a 0%, #a73232 60%, #ffc857 100%);
+    min-height: 100vh;
+    font-family: 'Catamaran', Arial, Helvetica, sans-serif;
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("https://www.transparenttextures.com/patterns/diamond-upholstery.png") repeat;
+    opacity: 0.08;
+    z-index: -1;
 }
