@@ -1,0 +1,25 @@
+{% extends "template.html" %}
+{% block title %}Medic | TF2 Mercenary Database{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+  <div class="col-md-8">
+    <div class="card shadow-lg">
+      <div class="card-header bg-success text-white text-center">
+        <h2>Medic</h2>
+      </div>
+      <div class="card-body text-center">
+        <img src="{{ url_for('static', filename='assets/img/medic.jpg') }}" alt="Medic" class="img-fluid rounded mb-3" style="max-width: 300px;">
+        <p class="lead">The Medic keeps his team alive with his healing abilities and powerful ÜberCharge, making him essential for any coordinated push or defense.</p>
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item"><strong>Role:</strong> Support</li>
+          <li class="list-group-item"><strong>Health:</strong> 150 HP</li>
+          <li class="list-group-item"><strong>Abilities:</strong> Healing, ÜberCharge</li>
+          <li class="list-group-item"><strong>Primary Weapon:</strong> Medigun</li>
+        </ul>
+        <a href="{{ url_for('views.home') }}" class="btn btn-warning mt-2">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
