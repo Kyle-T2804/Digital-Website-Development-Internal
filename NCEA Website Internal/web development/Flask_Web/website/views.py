@@ -11,6 +11,7 @@ views = Blueprint("views", __name__)
 
 GALLERY_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'gallery')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+MAX_FILE_SIZE = 2 * 1024 * 1024  # 2 MB
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -96,17 +97,26 @@ def spy():
 
 # Gallery route
 @views.route('/gallery', methods=['GET', 'POST'])
+@login_required
 def gallery():
     if request.method == 'POST':
-        if 'image' not in request.files:
+        file = request.files.get('image')
+        if not file:
             flash('No file part', 'error')
             return redirect(request.url)
-        file = request.files['image']
         if file.filename == '':
             flash('No selected file', 'error')
             return redirect(request.url)
         if file and allowed_file(file.filename):
+            file.seek(0, os.SEEK_END)
+            file_length = file.tell()
+            file.seek(0)
+            if file_length > MAX_FILE_SIZE:
+                flash('File too large (max 2MB)', 'error')
+                return redirect(request.url)
             filename = secure_filename(file.filename)
+            if not os.path.exists(GALLERY_FOLDER):
+                os.makedirs(GALLERY_FOLDER)
             save_path = os.path.join(GALLERY_FOLDER, filename)
             file.save(save_path)
             flash('Image uploaded!', 'success')
@@ -114,7 +124,6 @@ def gallery():
         else:
             flash('Invalid file type', 'error')
             return redirect(request.url)
-    # List images in gallery folder
     images = []
     if os.path.exists(GALLERY_FOLDER):
         images = [f for f in os.listdir(GALLERY_FOLDER) if allowed_file(f)]
