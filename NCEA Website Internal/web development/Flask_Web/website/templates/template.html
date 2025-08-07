@@ -27,9 +27,12 @@
 
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg" style="background: linear-gradient(90deg, #a73232 0%, #ffc857 100%); border-bottom: 4px solid #232323;">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold text-warning" href="/">🛡️ TF2 Mercenary Database 🛡️</a>
+        <a class="navbar-brand fw-bold text-dark" href="/">
+          <img src="{{ url_for('static', filename='assets/favicon.ico') }}" alt="TF2 Logo" width="32" height="32" class="me-2">
+          TF2 Mercenary Database
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -38,24 +41,24 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link {% if request.path == '/home' %}active{% endif %}" href="/home">Home</a>
+              <a class="nav-link {% if request.path == '/home' %}active{% endif %} text-dark fw-bold" href="/home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/gallery">Gallery</a>
+              <a class="nav-link text-dark fw-bold" href="/gallery">Gallery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact">Contact</a>
+              <a class="nav-link text-dark fw-bold" href="/contact">Contact</a>
             </li>
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
+              <a class="nav-link text-dark fw-bold" href="/logout">Logout</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="/sign-up">Sign Up</a>
+              <a class="nav-link text-dark fw-bold" href="/sign-up">Sign Up</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/login">Login</a>
+              <a class="nav-link text-dark fw-bold" href="/login">Login</a>
             </li>
             {% endif %}
           </ul>
@@ -79,12 +82,13 @@
     <div class="container mt-4">{% block content %} {% endblock %}</div>
 
     <!-- Footer -->
-    <footer class="py-4 mt-5 bg-dark">
+    <footer class="py-4 mt-5" style="background: linear-gradient(90deg, #a73232 0%, #ffc857 100%); border-top: 4px solid #232323;">
       <div class="container">
-        <p class="m-0 text-center text-white small">
+        <p class="m-0 text-center text-dark small fw-bold">
           🛡️ &copy; TF2 Mercenary Database — Created by TF2Fan, 2025 🛡️<br />
           All copyrights, logos, images, and videos belong to Valve Corporation.<br />
-          This fan page is not affiliated with Valve or Team Fortress 2. This website was built for educational purposes and customized using online resources.
+          This fan page is not affiliated with Valve or Team Fortress 2.<br />
+          Built for educational purposes and customized using online resources.
         </p>
       </div>
     </footer>
