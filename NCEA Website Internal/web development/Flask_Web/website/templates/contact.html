@@ -1,25 +1,34 @@
-{% extends "template.html" %} {% block title %} Contact {% endblock %}
+{% extends "template.html" %}
+{% block title %}Contact | TF2 Mercenary Database{% endblock %}
 
-
-{% block content %} 
-
-
-<h2> Contact </h2>
-<ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
-        <li class="list-group-item">
-            {{ note.data }}
-            <button type="button" class="btn-close" onClick="deleteNote({{ note.id }})">
-            </button>
-        </li>
-    {% endfor %}
-</ul>
-
-<form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
-    <br/>
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Add Comment</button>
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg">
+        <div class="card-header bg-warning text-dark text-center">
+          <h2>Contact & Comments</h2>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush mb-4" id="notes">
+            {% for note in user.notes %}
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>{{ note.data }}</span>
+                <button type="button" class="btn-close" onClick="deleteNote({{ note.id }})"></button>
+              </li>
+            {% endfor %}
+          </ul>
+          <form method="POST">
+            <div class="mb-3">
+              <textarea name="note" id="note" class="form-control" rows="3" placeholder="Add your comment..."></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Add Comment</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-</form>
+  </div>
+</div>
 {% endblock %}
