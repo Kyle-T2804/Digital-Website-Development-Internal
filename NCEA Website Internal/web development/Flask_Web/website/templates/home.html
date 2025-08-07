@@ -34,7 +34,7 @@
             ] %}
             {% for merc in mercs %}
             <div class="col-md-4 col-lg-3">
-                <a href="{{ url_for(merc.route) }}" class="text-decoration-none">
+                <a href="{{ url_for('views.' + merc.route) }}" class="text-decoration-none">
                     <div class="card h-100 shadow-sm text-center">
                         <img src="{{ url_for('static', filename='assets/img/' + merc.img) }}" class="card-img-top p-3" alt="{{ merc.name }}">
                         <div class="card-body">
