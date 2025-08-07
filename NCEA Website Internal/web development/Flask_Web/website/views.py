@@ -3,9 +3,17 @@ from flask_login import login_user, login_required, logout_user, current_user
 from .models import User, Note
 from . import db
 import json
+import os
+from werkzeug.utils import secure_filename
 
 # set blueprint
 views = Blueprint("views", __name__)
+
+GALLERY_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'gallery')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 # default/home route
@@ -15,10 +23,6 @@ views = Blueprint("views", __name__)
 def home():
     return render_template("home.html", user=current_user)
 
-# Gallery route
-@views.route("/gallery")
-def gallery():
-    return render_template("gallery.html", user=current_user)
 
 
 # contant route
@@ -89,3 +93,29 @@ def sniper():
 @views.route('/spy')
 def spy():
     return render_template('spy.html', user=current_user)
+
+# Gallery route
+@views.route('/gallery', methods=['GET', 'POST'])
+def gallery():
+    if request.method == 'POST':
+        if 'image' not in request.files:
+            flash('No file part', 'error')
+            return redirect(request.url)
+        file = request.files['image']
+        if file.filename == '':
+            flash('No selected file', 'error')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            save_path = os.path.join(GALLERY_FOLDER, filename)
+            file.save(save_path)
+            flash('Image uploaded!', 'success')
+            return redirect(url_for('views.gallery'))
+        else:
+            flash('Invalid file type', 'error')
+            return redirect(request.url)
+    # List images in gallery folder
+    images = []
+    if os.path.exists(GALLERY_FOLDER):
+        images = [f for f in os.listdir(GALLERY_FOLDER) if allowed_file(f)]
+    return render_template('gallery.html', images=images, user=current_user)
