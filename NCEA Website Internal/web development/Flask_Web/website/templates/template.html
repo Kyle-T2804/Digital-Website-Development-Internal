@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Official fan page for rock music enthusiasts" />
-    <meta name="author" content="RockFan" />
+    <meta name="description" content="TF2 Mercenary Database - Meet the Team Fortress 2 Classes!" />
+    <meta name="author" content="TF2Fan" />
     <title>{% block title %}{% endblock %}</title>
 
     <!-- Bootstrap CSS -->
@@ -12,7 +12,7 @@
       integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" />
 
     <!-- Font Awesome -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -29,7 +29,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand fw-bold text-warning" href="/">🎸 ROCK MUSIC FAN CLUB 🎸</a>
+        <a class="navbar-brand fw-bold text-warning" href="/">🛡️ TF2 Mercenary Database 🛡️</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -40,22 +40,19 @@
             <li class="nav-item">
               <a class="nav-link {% if request.path == '/home' %}active{% endif %}" href="/home">Home</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a>
+            </li>
             {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="/gallery">Rock Legends Gallery</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/contact">Fan Zone</a>
-            </li>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="/gallery">Rock Legends Gallery</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/sign-up">Join the Fan Club!</a>
+              <a class="nav-link" href="/sign-up">Sign Up</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/login">Login</a>
@@ -85,9 +82,9 @@
     <footer class="py-4 mt-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white small">
-          🎸 &copy; Rock Music Fan Club — Created by RockFan, 2025 🎸<br />
-          All copyrights, logos, images, and videos belong to their respective artists and record labels.
-          This fan page is not affiliated with any official rock bands or organizations. This website was built for educational purposes and customized using online resources.
+          🛡️ &copy; TF2 Mercenary Database — Created by TF2Fan, 2025 🛡️<br />
+          All copyrights, logos, images, and videos belong to Valve Corporation.<br />
+          This fan page is not affiliated with Valve or Team Fortress 2. This website was built for educational purposes and customized using online resources.
         </p>
       </div>
     </footer>
@@ -102,16 +99,6 @@
 
     <!-- Page-Specific JS -->
     {% block javascript %}
-    <script type="text/javascript">
-      function deleteNote(noteId) {
-        fetch("/delete-note", {
-          method: "POST",
-          body: JSON.stringify({ noteId: noteId }),
-        }).then((_res) => {
-          window.location.href = "/contact";
-        });
-      }
-    </script>
     {% endblock %}
   </body>
 </html>
