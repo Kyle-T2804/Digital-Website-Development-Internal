@@ -10,3 +10,6 @@ __pycache__/
 .env
 
 # Ignore VS Code settings
+
+# Ignore gallery files
+website/static/gallery/*
