@@ -67,3 +67,15 @@ body::before {
     opacity: 0.08;
     z-index: -1;
 }
+
+.class-info {
+    background: rgba(167, 50, 50, 0.08);
+    border-radius: 8px;
+    border: 1.5px solid #a73232;
+    margin-bottom: 1rem;
+}
+.class-info li {
+    background: transparent !important;
+    color: #232323;
+    font-weight: 500;
+}

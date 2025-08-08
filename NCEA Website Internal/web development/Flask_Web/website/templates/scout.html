@@ -2,22 +2,47 @@
 {% block title %}Scout | TF2 Mercenary Database{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center mt-5">
-  <div class="col-md-8">
-    <div class="card shadow-lg">
-      <div class="card-header bg-primary text-white text-center">
-        <h2>Scout</h2>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <div class="card shadow-lg mb-4">
+        <img src="{{ url_for('static', filename='assets/img/scout.jpg') }}" alt="Scout" class="img-fluid rounded-top" style="max-width: 100%;">
+        <div class="card-body">
+          <h3 class="mt-2">Scout</h3>
+          <span class="badge bg-primary mb-2">Offense</span>
+          <ul class="list-group class-info">
+            <li class="list-group-item"><strong>Health:</strong> 125 HP</li>
+            <li class="list-group-item"><strong>Abilities:</strong> Double Jump, Fast Movement</li>
+            <li class="list-group-item"><strong>Primary Weapon:</strong> Scattergun</li>
+          </ul>
+        </div>
       </div>
-      <div class="card-body text-center">
-        <img src="{{ url_for('static', filename='assets/img/scout.jpg') }}" alt="Scout" class="img-fluid rounded mb-3" style="max-width: 300px;">
-        <p class="lead">The fastest mercenary on the battlefield, the Scout excels at capturing objectives and harassing the enemy with his speed and double jump ability.</p>
-        <ul class="list-group list-group-flush mb-3">
-          <li class="list-group-item"><strong>Role:</strong> Offense</li>
-          <li class="list-group-item"><strong>Health:</strong> 125 HP</li>
-          <li class="list-group-item"><strong>Abilities:</strong> Double Jump, Fast Movement</li>
-          <li class="list-group-item"><strong>Primary Weapon:</strong> Scattergun</li>
-        </ul>
-        <a href="{{ url_for('views.home') }}" class="btn btn-warning mt-2">← Back to Home</a>
+    </div>
+    <div class="col-md-8">
+      <div class="card shadow-lg mb-4">
+        <div class="card-body">
+          <h4>Overview</h4>
+          <p>
+            The <strong>Scout</strong> is the fastest class in Team Fortress 2, specializing in hit-and-run tactics and objective capturing. His double jump ability allows him to reach places other classes cannot, making him ideal for flanking and quick escapes.
+          </p>
+          <h4>Background</h4>
+          <p>
+            Hailing from Boston, the Scout is known for his cocky attitude and relentless energy. He excels at harassing enemies and is often the first to reach control points or intelligence briefcases.
+          </p>
+          <h4>Tips & Strategy</h4>
+          <ul>
+            <li>Use double jump to dodge enemy fire and reach high ground.</li>
+            <li>Capture objectives quickly thanks to the Scout's speed bonus.</li>
+            <li>Flank slower classes and avoid direct confrontations with Heavies or sentries.</li>
+          </ul>
+          <h4>Trivia</h4>
+          <ul>
+            <li>The Scout is voiced by Nathan Vetterlein.</li>
+            <li>He is the only class that can double jump.</li>
+            <li>His Boston accent and fast-talking style are iconic in TF2.</li>
+          </ul>
+          <a href="{{ url_for('views.home') }}" class="btn btn-warning mt-3">← Back to Home</a>
+        </div>
       </div>
     </div>
   </div>
