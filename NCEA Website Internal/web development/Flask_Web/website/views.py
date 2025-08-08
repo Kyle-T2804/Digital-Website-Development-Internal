@@ -132,9 +132,9 @@ def gallery():
 @views.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form.get('email')
+        identifier = request.form.get('identifier')
         password = request.form.get('password1')
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter((User.email == identifier) | (User.username == identifier)).first()
         if user and user.check_password(password):
             login_user(user)
             flash('Logged in successfully!', category='success')
