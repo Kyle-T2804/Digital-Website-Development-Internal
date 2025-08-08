@@ -10,10 +10,15 @@ from werkzeug.utils import secure_filename
 views = Blueprint("views", __name__)
 
 GALLERY_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'gallery')
+# Allowed file extensions for gallery uploads
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+# Maximum file size for uploads (2 MB)
 MAX_FILE_SIZE = 2 * 1024 * 1024  # 2 MB
 
 def allowed_file(filename):
+    """
+    Check if the uploaded file has an allowed extension.
+    """
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
@@ -99,6 +104,13 @@ def spy():
 @views.route('/gallery', methods=['GET', 'POST'])
 @login_required
 def gallery():
+    """
+    Gallery route for uploading and displaying images.
+    - Only allows certain file types (see ALLOWED_EXTENSIONS)
+    - Enforces a maximum file size (2MB)
+    - Uses secure_filename to prevent directory traversal attacks
+    - Creates gallery folder if it doesn't exist
+    """
     if request.method == 'POST':
         file = request.files.get('image')
         if not file:
@@ -108,6 +120,7 @@ def gallery():
             flash('No selected file', 'error')
             return redirect(request.url)
         if file and allowed_file(file.filename):
+            # Check file size by seeking to end and getting position
             file.seek(0, os.SEEK_END)
             file_length = file.tell()
             file.seek(0)
@@ -124,6 +137,7 @@ def gallery():
         else:
             flash('Invalid file type', 'error')
             return redirect(request.url)
+    # List images in gallery folder
     images = []
     if os.path.exists(GALLERY_FOLDER):
         images = [f for f in os.listdir(GALLERY_FOLDER) if allowed_file(f)]
@@ -131,9 +145,15 @@ def gallery():
 
 @views.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    Login route supporting login by email or username.
+    - Checks both email and username fields for user lookup
+    - Uses Flask-Login to manage session
+    """
     if request.method == 'POST':
         identifier = request.form.get('identifier')
         password = request.form.get('password1')
+        # Find user by email or username
         user = User.query.filter((User.email == identifier) | (User.username == identifier)).first()
         if user and user.check_password(password):
             login_user(user)
@@ -145,6 +165,12 @@ def login():
 
 @views.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
+    """
+    Sign-up route with validation:
+    - Checks for existing email
+    - Ensures passwords match and meet length requirements
+    - Stores password securely using set_password
+    """
     if request.method == 'POST':
         email = request.form.get('email')
         username = request.form.get('username')
@@ -160,7 +186,7 @@ def sign_up():
             flash('Password must be at least 6 characters.', category='error')
         else:
             new_user = User(email=email, username=username)
-            new_user.set_password(password1)  # If you use a password hash method
+            new_user.set_password(password1)  
             db.session.add(new_user)
             db.session.commit()
             flash('Account created! You can now log in.', category='success')
