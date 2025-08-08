@@ -41,26 +41,38 @@
           <ul class="navbar-nav ms-auto">
             <!-- Navigation links; highlights active page -->
             <li class="nav-item">
-              <a class="nav-link {% if request.path == '/home' %}active{% endif %} text-dark fw-bold" href="/home">Home</a>
+              <a class="nav-link {% if request.path == '/home' %}active{% endif %} text-dark fw-bold" href="/home">
+                <i class="fa-solid fa-house"></i> Home
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark fw-bold" href="/gallery">Gallery</a>
+              <a class="nav-link text-dark fw-bold" href="/gallery">
+                <i class="fa-solid fa-image"></i> Gallery
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark fw-bold" href="/contact">Contact</a>
+              <a class="nav-link text-dark fw-bold" href="/contact">
+                <i class="fa-solid fa-envelope"></i> Contact
+              </a>
             </li>
             {% if user.is_authenticated %}
             <!-- Show logout if user is logged in -->
             <li class="nav-item">
-              <a class="nav-link text-dark fw-bold" href="/logout">Logout</a>
+              <a class="nav-link text-dark fw-bold" href="/logout">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+              </a>
             </li>
             {% else %}
             <!-- Show sign up and login if user is not logged in -->
             <li class="nav-item">
-              <a class="nav-link text-dark fw-bold" href="/sign-up">Sign Up</a>
+              <a class="nav-link text-dark fw-bold" href="/sign-up">
+                <i class="fa-solid fa-user-plus"></i> Sign Up
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark fw-bold" href="/login">Login</a>
+              <a class="nav-link text-dark fw-bold" href="/login">
+                <i class="fa-solid fa-right-to-bracket"></i> Login
+              </a>
             </li>
             {% endif %}
           </ul>
