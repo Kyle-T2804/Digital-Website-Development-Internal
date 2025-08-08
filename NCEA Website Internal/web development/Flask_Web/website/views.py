@@ -142,3 +142,27 @@ def login():
         else:
             flash('Invalid email or password.', category='error')
     return render_template('login.html', user=current_user)
+
+@views.route('/sign-up', methods=['GET', 'POST'])
+def sign_up():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        username = request.form.get('username')
+        password1 = request.form.get('password1')
+        password2 = request.form.get('password2')
+
+        user_exists = User.query.filter_by(email=email).first()
+        if user_exists:
+            flash('Email already registered.', category='error')
+        elif password1 != password2:
+            flash('Passwords do not match.', category='error')
+        elif len(password1) < 6:
+            flash('Password must be at least 6 characters.', category='error')
+        else:
+            new_user = User(email=email, username=username)
+            new_user.set_password(password1)  # If you use a password hash method
+            db.session.add(new_user)
+            db.session.commit()
+            flash('Account created! You can now log in.', category='success')
+            return redirect(url_for('views.login'))
+    return render_template('sign_up.html', user=current_user)
