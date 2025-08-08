@@ -128,3 +128,17 @@ def gallery():
     if os.path.exists(GALLERY_FOLDER):
         images = [f for f in os.listdir(GALLERY_FOLDER) if allowed_file(f)]
     return render_template('gallery.html', images=images, user=current_user)
+
+@views.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password1')
+        user = User.query.filter_by(email=email).first()
+        if user and user.check_password(password):
+            login_user(user)
+            flash('Logged in successfully!', category='success')
+            return redirect(url_for('views.home'))
+        else:
+            flash('Invalid email or password.', category='error')
+    return render_template('login.html', user=current_user)
