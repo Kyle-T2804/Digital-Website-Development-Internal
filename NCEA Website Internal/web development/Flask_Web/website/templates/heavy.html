@@ -2,22 +2,47 @@
 {% block title %}Heavy | TF2 Mercenary Database{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center mt-5">
-  <div class="col-md-8">
-    <div class="card shadow-lg">
-      <div class="card-header bg-secondary text-white text-center">
-        <h2>Heavy</h2>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <div class="card shadow-lg mb-4">
+        <img src="{{ url_for('static', filename='assets/img/heavy.jpg') }}" alt="Heavy" class="img-fluid rounded-top" style="max-width: 100%;">
+        <div class="card-body">
+          <h3 class="mt-2">Heavy</h3>
+          <span class="badge bg-secondary mb-2 text-white">Defense</span>
+          <ul class="list-group class-info">
+            <li class="list-group-item"><strong>Health:</strong> 300 HP</li>
+            <li class="list-group-item"><strong>Abilities:</strong> High Damage, Tanking</li>
+            <li class="list-group-item"><strong>Primary Weapon:</strong> Minigun</li>
+          </ul>
+        </div>
       </div>
-      <div class="card-body text-center">
-        <img src="{{ url_for('static', filename='assets/img/heavy.jpg') }}" alt="Heavy" class="img-fluid rounded mb-3" style="max-width: 300px;">
-        <p class="lead">The Heavy is the toughest mercenary, wielding a powerful minigun and boasting the highest health. He excels at soaking up damage and defending key positions.</p>
-        <ul class="list-group list-group-flush mb-3">
-          <li class="list-group-item"><strong>Role:</strong> Defense</li>
-          <li class="list-group-item"><strong>Health:</strong> 300 HP</li>
-          <li class="list-group-item"><strong>Abilities:</strong> High Damage, Tanking</li>
-          <li class="list-group-item"><strong>Primary Weapon:</strong> Minigun</li>
-        </ul>
-        <a href="{{ url_for('views.home') }}" class="btn btn-warning mt-2">← Back to Home</a>
+    </div>
+    <div class="col-md-8">
+      <div class="card shadow-lg mb-4">
+        <div class="card-body">
+          <h4>Overview</h4>
+          <p>
+            The <strong>Heavy</strong> is the strongest and most resilient class in Team Fortress 2, capable of absorbing massive amounts of damage and dealing it back with his minigun. He is the backbone of any defensive lineup.
+          </p>
+          <h4>Background</h4>
+          <p>
+            Hailing from Russia, the Heavy is known for his love of sandwiches, his deep voice, and his devotion to his weapon, Sasha. He is both feared and respected on the battlefield.
+          </p>
+          <h4>Tips & Strategy</h4>
+          <ul>
+            <li>Pair with a Medic for maximum survivability and offensive power.</li>
+            <li>Use your high health to protect teammates and hold choke points.</li>
+            <li>Spin up your minigun before rounding corners to surprise enemies.</li>
+          </ul>
+          <h4>Trivia</h4>
+          <ul>
+            <li>The Heavy is voiced by Gary Schwartz.</li>
+            <li>He has the highest base health of any class in TF2.</li>
+            <li>His sandwich can heal both himself and teammates.</li>
+          </ul>
+          <a href="{{ url_for('views.home') }}" class="btn btn-warning mt-3">← Back to Home</a>
+        </div>
       </div>
     </div>
   </div>
