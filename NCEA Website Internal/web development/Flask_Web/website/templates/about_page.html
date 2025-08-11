@@ -1,0 +1,43 @@
+{% extends "template.html" %}
+{% block title %}About | TF2 Mercenary Database{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg mb-4">
+        <div class="card-header bg-info text-white text-center">
+          <h2>About TF2 Mercenary Database</h2>
+        </div>
+        <div class="card-body">
+          <h4>What is this site?</h4>
+          <p>
+            <strong>TF2 Mercenary Database</strong> is a fan-made wiki and gallery dedicated to the classes, weapons, and community of <span class="fw-bold">Team Fortress 2</span>. Here you can explore detailed information about each mercenary, view user-uploaded images, and connect with other fans.
+          </p>
+          <h4>Features</h4>
+          <ul>
+            <li>Comprehensive wiki pages for every TF2 class</li>
+            <li>Community gallery with user uploads, likes, and comments</li>
+            <li>Login and sign-up for personalized features</li>
+            <li>Polls, achievements, and advanced class stats</li>
+            <li>Responsive design for desktop and mobile</li>
+          </ul>
+          <h4>Credits & Acknowledgements</h4>
+          <ul>
+            <li>Created by <strong>Kyle</strong> for NCEA Web Development Internal</li>
+            <li>TF2 and all related assets &copy; Valve Corporation</li>
+            <li>Icons and images from Valve, TF2 Wiki, and community contributors</li>
+            <li>Built using Flask, Bootstrap, and SQLAlchemy</li>
+          </ul>
+          <h4>Contact & Feedback</h4>
+          <p>
+            For suggestions, bug reports, or feedback, please use the <a href="{{ url_for('views.contact') }}">Contact</a> page or reach out via the comments section.
+          </p>
+          <h4>Disclaimer</h4>
+          <p>
+            This site is not affiliated with Valve or Team Fortress 2. All content is for educational and fan purposes only.
+          </p>
+        </div>
+      </div>
+    </div>
+{% endblock %}

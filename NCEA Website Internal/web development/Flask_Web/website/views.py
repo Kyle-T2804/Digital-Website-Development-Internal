@@ -192,3 +192,7 @@ def sign_up():
             flash('Account created! You can now log in.', category='success')
             return redirect(url_for('views.login'))
     return render_template('sign_up.html', user=current_user)
+
+@views.route('/about')
+def about():
+    return render_template('about_page.html', user=current_user)
