@@ -15,6 +15,10 @@
               <label for="image" class="form-label">Upload an image</label>
               <input type="file" id="image" name="image" class="form-control" accept="image/*" required>
             </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description (optional)</label>
+              <input type="text" id="description" name="description" class="form-control" maxlength="250">
+            </div>
             <div class="text-center">
               <button class="btn btn-primary" type="submit">Upload</button>
             </div>
@@ -22,9 +26,18 @@
         </div>
       </div>
       <div class="row">
-        {% for filename in images %}
+        {% for img in images %}
         <div class="col-md-4 mb-4">
-          <img src="{{ url_for('static', filename='gallery/' ~ filename) }}" class="img-fluid rounded" alt="User Image">
+          <div class="card h-100 shadow-sm">
+            <img src="{{ url_for('static', filename='gallery/' ~ img.filename) }}" class="img-fluid rounded-top" alt="User Image">
+            <div class="card-body">
+              <h6 class="card-title">{{ img.description or "No description" }}</h6>
+              <p class="card-text">
+                <strong>Uploaded by:</strong> {{ img.uploader.username }}<br>
+                <strong>Date:</strong> {{ img.upload_time.strftime('%Y-%m-%d %H:%M') }}
+              </p>
+            </div>
+          </div>
         </div>
         {% endfor %}
       </div>

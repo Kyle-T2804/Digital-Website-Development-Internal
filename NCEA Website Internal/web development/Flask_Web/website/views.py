@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, url_for, request, flash, redirect, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
-from .models import User, Note
+from .models import User, Note, GalleryImage
 from . import db
 import json
 import os
@@ -12,8 +12,8 @@ views = Blueprint("views", __name__)
 GALLERY_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static', 'gallery')
 # Allowed file extensions for gallery uploads
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-# Maximum file size for uploads (2 MB)
-MAX_FILE_SIZE = 2 * 1024 * 1024  # 2 MB
+# Maximum file size for uploads (5 MB)
+MAX_FILE_SIZE = 5 * 1024 * 1024  # 5 MB
 
 def allowed_file(filename):
     """
@@ -110,34 +110,20 @@ def gallery():
     """
     if request.method == 'POST':
         file = request.files.get('image')
-        if not file:
-            flash('No file part', 'error')
-            return redirect(request.url)
-        if file.filename == '':
-            flash('No selected file', 'error')
-            return redirect(request.url)
+        description = request.form.get('description')
         if file and allowed_file(file.filename):
-            # Check file size by seeking to end and getting position
-            file.seek(0, os.SEEK_END)
-            file_length = file.tell()
-            file.seek(0)
-            if file_length > MAX_FILE_SIZE:
-                flash('File too large (max 2MB)', 'error')
-                return redirect(request.url)
             filename = secure_filename(file.filename)
-            if not os.path.exists(GALLERY_FOLDER):
-                os.makedirs(GALLERY_FOLDER)
-            save_path = os.path.join(GALLERY_FOLDER, filename)
-            file.save(save_path)
+            file.save(os.path.join(GALLERY_FOLDER, filename))
+            new_image = GalleryImage(
+                filename=filename,
+                uploader_id=current_user.id,
+                description=description
+            )
+            db.session.add(new_image)
+            db.session.commit()
             flash('Image uploaded!', 'success')
             return redirect(url_for('views.gallery'))
-        else:
-            flash('Invalid file type', 'error')
-            return redirect(request.url)
-    # List images in gallery folder
-    images = []
-    if os.path.exists(GALLERY_FOLDER):
-        images = [f for f in os.listdir(GALLERY_FOLDER) if allowed_file(f)]
+    images = GalleryImage.query.order_by(GalleryImage.upload_time.desc()).all()
     return render_template('gallery.html', images=images, user=current_user)
 
 @views.route('/login', methods=['GET', 'POST'])
