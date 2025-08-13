@@ -5,6 +5,8 @@ from . import db
 import json
 import os
 from werkzeug.utils import secure_filename
+from datetime import datetime
+import pytz  # or use zoneinfo for Python 3.9+
 
 # set blueprint
 views = Blueprint("views", __name__)
@@ -14,6 +16,8 @@ GALLERY_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'stati
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 # Maximum file size for uploads (5 MB)
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5 MB
+
+local_tz = pytz.timezone('Pacific/Auckland')  # Change to local timezone
 
 def allowed_file(filename):
     """
@@ -124,6 +128,9 @@ def gallery():
             flash('Image uploaded!', 'success')
             return redirect(url_for('views.gallery'))
     images = GalleryImage.query.order_by(GalleryImage.upload_time.desc()).all()
+    nz_tz = pytz.timezone('Pacific/Auckland')
+    for img in images:
+        img.nzst = img.upload_time.astimezone(nz_tz).strftime('%Y-%m-%d %H:%M')
     return render_template('gallery.html', images=images, user=current_user)
 
 @views.route('/login', methods=['GET', 'POST'])
