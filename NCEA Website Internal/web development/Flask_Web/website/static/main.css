@@ -79,3 +79,9 @@ body::before {
     color: #232323;
     font-weight: 500;
 }
+
+.nav-link.active, .nav-link:focus, .nav-link:hover {
+  background: #ffc85722;
+  border-radius: 8px;
+  color: #a73232 !important;
+}

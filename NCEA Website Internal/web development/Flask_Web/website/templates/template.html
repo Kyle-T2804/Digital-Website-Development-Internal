@@ -49,34 +49,37 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark fw-bold" href="/gallery">
+              <a class="nav-link {% if request.path == '/gallery' %}active{% endif %} text-dark fw-bold" href="/gallery">
                 <i class="fa-solid fa-image"></i> Gallery
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark fw-bold" href="/contact">
+              <a class="nav-link {% if request.path == '/contact' %}active{% endif %} text-dark fw-bold" href="/contact">
                 <i class="fa-solid fa-envelope"></i> Contact
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark fw-bold" href="{{ url_for('views.about') }}">About</a>
+              <a class="nav-link {% if request.path == '/about' %}active{% endif %} text-dark fw-bold" href="{{ url_for('views.about') }}">
+                <i class="fa-solid fa-circle-info" style="vertical-align:middle; margin-right:4px;"></i>
+                About
+              </a>
             </li>
             {% if user.is_authenticated %}
             <!-- Show logout if user is logged in -->
             <li class="nav-item">
-              <a class="nav-link text-dark fw-bold" href="/logout">
+              <a class="nav-link {% if request.path == '/logout' %}active{% endif %} text-dark fw-bold" href="/logout">
                 <i class="fa-solid fa-right-from-bracket"></i> Logout
               </a>
             </li>
             {% else %}
             <!-- Show sign up and login if user is not logged in -->
             <li class="nav-item">
-              <a class="nav-link text-dark fw-bold" href="/sign-up">
+              <a class="nav-link {% if request.path == '/sign-up' %}active{% endif %} text-dark fw-bold" href="/sign-up">
                 <i class="fa-solid fa-user-plus"></i> Sign Up
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark fw-bold" href="/login">
+              <a class="nav-link {% if request.path == '/login' %}active{% endif %} text-dark fw-bold" href="/login">
                 <i class="fa-solid fa-right-to-bracket"></i> Login
               </a>
             </li>
