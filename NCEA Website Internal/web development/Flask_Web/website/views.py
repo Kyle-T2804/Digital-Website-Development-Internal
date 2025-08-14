@@ -178,6 +178,7 @@ def sign_up():
     - Checks for existing email
     - Ensures passwords match and meet length requirements
     - Stores password securely using set_password
+    - Automatically logs in the user after successful registration
     """
     if request.method == 'POST':
         email = request.form.get('email')
@@ -197,8 +198,9 @@ def sign_up():
             new_user.set_password(password1)  
             db.session.add(new_user)
             db.session.commit()
-            flash('Account created! You can now log in.', category='success')
-            return redirect(url_for('views.login'))
+            login_user(new_user)  # Automatically log in the new user
+            flash('Account created and logged in!', category='success')
+            return redirect(url_for('views.home'))
     return render_template('sign_up.html', user=current_user)
 
 # About page route
