@@ -16,4 +16,4 @@ if __name__ == "__main__":
         # Redirect back to the page the user was on, or home if not available
         return redirect(request.referrer or url_for('views.gallery'))
 
-    app.run(debug=True)
+    app.run(debug=False)
