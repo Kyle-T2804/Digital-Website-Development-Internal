@@ -127,6 +127,8 @@ def gallery():
         description = request.form.get('description')
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+            # Ensure the gallery folder exists
+            os.makedirs(GALLERY_FOLDER, exist_ok=True)
             file.save(os.path.join(GALLERY_FOLDER, filename))
             # Set upload_time as UTC and timezone-aware
             utc_now = datetime.now(pytz.utc)
